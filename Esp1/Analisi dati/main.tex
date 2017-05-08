@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{bm}
+\usepackage{titling}
+\usepackage{mathtools}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+
+\begin{document}
+
+\section*{Child}
+
+La seguente è la tabella di intercetta e pendenza date dal fit lineare della legge di Child dopo averla linearizzata. In realtà il valore di intercetta che ho messo in tabella corrisponde all'esponenziale della vera intercetta del fit. In questo modo il valore (l'esponenziale della vera intercetta) può essere confrontato con il coefficiente della legge di Child che vale $(5.034 \pm 0.916) \times 10^{-5}$ stessa unità di misura della tabella. La pendenza dà l'esponente del potenziale e si può vedere che la regressione lineare restituisce un valore confrontabile con 3/2 (a parte il primo valore che corrisponde alla prima serie di dati presa che escluderei perché i punti presi sono pochi). Ho incluso nell'ultima colonna la serie di dati presi la seconda sessione. Come potete vedere i valori delle temperature hanno un grosso errore che è dovuto principalmente dalla poca accuratezza nel misurare la lunghezza del filamento e la sua resistenza. Infatti l'ultima serie ha un errore più contenuto dovuto al fatto che abbiamo misurato il filamento prima di saldarlo. (per quanto riguarda le serie 2 e 4, abbiamo pochi punti anche per quelle ma direi di tenerle lo stesso).
+
+
+\begin{center}
+\begin{tabular}{rccccc}
+&\multicolumn{5}{c}{Temperature (K)}\\
+&2406 $\pm$ 360& 	2318 $\pm$ 386&	2363 $\pm$ 393 &	2269 $\pm$ 377&	2238 $\pm$ 167\\ \hline
+intercetta&	1.6&	0.6&	0.9&	0.5&	1.1\\
+$[F C^{1/2} m^{-3/2}] \times 10^{-5}$&	$\pm$ 0.9&	$\pm$ 0.3&	$\pm$0.2&	$\pm$0.1&	$\pm$0.2	  \\ \hline
+pendenza&	1.3 $\pm$ 0.3	&	1.7 $\pm$ 0.6&	1.5 $\pm$ 0.2&	1.6 $\pm$ 0.7&	1.6 $\pm$ 0.1\\ \hline \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[htbp]
+		\centering
+			\includegraphics[width=0.9\columnwidth]{Child.jpg}
+\end{figure}
+
+\section*{Richardson}
+
+\begin{figure}[htbp]
+		\centering
+			\includegraphics[width=0.9\columnwidth]{Richardson.jpg}
+\end{figure}
+
+Qui ho plottato il logaritmo del rapporto tra corrente elettronica e quadrato della temperatura vs inverso della temperatura. Sono andato a controllare e questo tipo di grafici sono usati (o almeno lo erano) e si chiamano Richardson's plots. Anche qui ho fatto regressione lineare per calcolare funzione lavoro e il risultato è $W = (8.2 \pm 1.6) eV$. Ho usato la serie di dati presi la seconda sessione, quelli a potenziale di griglia fisso a 50V mentre variavamo la temperatura del filamento. Da wikipedia lavoro di estrazione del tungsteno $\approx 4.32 \; - \; 5.22 \; eV$. Questo è il plot senza il fattore correttivo (l'esponenziale della radice quadrata del campo elettrico). Ho calcolato anche l'intercetta per confrontarla con la costante moltiplicativa nella formula di Richardson ma l'errore è immenso: $3.7 \times 10^{13} \pm 3.3 \times 10^{14}$, non ha senso. Tanto quello che a noi interessa è il lavoro di estrazione che viene confrontabile più o meno.
+
+Per quanto riguarda Richardson corretto con l'esponenziale della radice del campo elettrico ho fatto conti che però non portano a niente. Cioè, calcolarsi il lavoro di estrazione con questa formula dà un errore enorme. Anche qui c'è un errore maggiore del 100\% sull'intercetta e quindi sul lavoro di estrazione. In ogni caso trovate altri grafici e calcoli nel file analisi.m. 
+
+
+\end{document}
