@@ -1,0 +1,40 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Volpini, Paganini, Finazzer, Beghini}
+\title{Decadimenti}
+\begin{document}
+\maketitle
+\section{Abstract}
+In questa esperienza vediamo dapprima il funzionamento di un gamma ray detector e studiamo le carattereristiche degli spettri di emissione di sostanze note. In seguito determiniamo la natura di un campione incognito osservando lo spettro e avvalendoci di dati tabulati. Infine determiniamo l'età di una sorgente misurandone lo spettro e conoscendo l'attività al momento del'acquisto.
+\section{Apparato sperimentale}
+L'apparato sperimentale è costituito da
+\begin{description}
+  \item[Rivelatore germanio] Il rivelatore al \textbf{germanio} si basa sulla produzione di elettroni e lacune in seguito alla ionizzazione da parte della radiazione incidente. Il numero di portatori prodotti è proporzionale all'energia della radiazione. Dato che l'energia richiesta per la produzione di una coppia è piccola rispetto ad altri metodi basati sulla ionizzazione (per esempio usando gas) la variazione statistica dei conteggi (cioè produzione di coppie) è minore e la risoluzione in energia è maggiore: per questi tipi di rivelatori ($\simeq 0.5 \text{ @ } 120 KeV$ , dove è massima).% Difetti nel reticolo cristallino e dimensioni del cristallo stesso limitano tuttavia...
+  La massa minore degli atomi nel reticolo di germanio, rispetto ad uno scintillatore NaI ne riduce l'efficienza, overo meno radiazione incidente viene effettivamente assorbita.
+  Un altro problema con questo tipo di rivelatori ha a che fare con la temperatura. La giunzione viene polarizzata inversamente e raccoglie le coppie prodotte dai fotoni gamma, tuttavia l'energia termica a temperatura ambiente è dello stesso ordine di grandezza del band gap, il che causa un rumore non trascurabile, ma che anzi rende impossibile la misura. Pertanto il rivelatore viene raffreddato, nel nostro caso a temperatura dell'azoto liquido.
+  \item [Scintillatore] Tale rivelatore è un detector $3x3$ costituito da uno scintillatore (un cristallo di \textit{ioduro di sodio}) e un fotomoltiplicatore. Agendo sulla polarizzazione di quest'ultimo si possono ottenere risposte più o meno rapide agli impulsi in ingresso (è in questo senso assimilabile ad un circuito RC). L'ideale è riuscire a integrare su tutti i fotoni dovuti ad un'evento prodotti dallo scintillatore, ma avere comunque una risposta veloce per poter distinguere eventi, ovvero raggi $\gamma$, diversi. La risoluzione energetica di tale rivelatore è peggiore rispetto al germanio, ma l'efficienza in termini di raggi gamma assorbiti è $4$ volte più alta.
+  \item [multi channel digital analyzer] Questo strumento si occupa di convertire in digitale gli impulsi in ingresso. Esso usa quindi un ADC molto veloce e produce un'uscita digitale, dove ogni valore viene chiamato canale. L'ampiezza del picco in ingresso è proporzionale all'energia ma dipende anche dalle caratteristiche dello scintillatore e del fotomoltiplicatore e non è detto che sia lineare. Per questo motivo serve una calibrazione usando sorgenti note, in modo da associare il numero di canale all'energia. La non linearità si può correggere interpolando picchi di valore not sparsi uniformemente nello spettro. Per il rivelatore al germanio lavoriamo con $2^{10}$ canali, mentre con lo scintillatore siamo a $2^{12}$.
+  \item [altro] Usiamo un dewar per contenere l'azoto liquido e tramite un dito freddo mantenere il rivelatore al germanio a tale temperatura. Disponiamo di una sorgente nota per la calibrazione, varie sorgenti da identificare e una sorgente di cui stimare l'età. Il multichannel analyzer è collegato ad un pc per la visualizzazione dei conteggi e per la calibrazione.
+\end{description}
+
+\section{svolgimento}
+\begin{itemize}
+  \item Per prima cosa calibriamo il software per l'acquisizione. Per fare ciò disponiamo di un isotopo del sodio, in particolare è $^{22}Na$ che ha un tempo di dimezzamento di circa $2.5y$.
+  \item Successivamente cerchiamo di determinare delle sorgenti incognite, usando valori tabulati.
+  \item Infine conoscendo l'attività al tempo di acquisto della sorgente (comunque incognita) e potendo misurare l'attività al tempo attuale, determiniamo il tempo di acquisto stesso.
+\end{itemize}
+
+\section{misura}
+Il nostro gruppo ha lavorato con il detector basato su scintillatore e fotomoltiplicatore. La radiazione interagisce con il detector essenzialmente in 3 modi:
+\begin{description}
+  \item[effetto fotoelettrico] I fotoni interagiscono con gli atomi dello scintillatore scalzando elettroni dalle shell. Se gli elettroni provengono dalle shell più interne ho emissione di raggi X e emissione di elettroni auger. I fotoni prodotti a loro volta interagiscono con altri atomi, il tutto da luogo ad una cascata di eventi. Se l'interazione fosse solo di questo tipo avrei in uscita un impulso con la stessa energia del fotone gamma incidente. I vari picchi, detti fotopicchi, sono caratteristici del nucleo che li ha emessi.
+  \item[compton] I fotoni interagiscono anche tramite effetto compton. In questo caso un fotone incontra un elettrone e viene scatterato, riducendo la propria energia. Il fotone risultante può dare origine ad effetto fotoelettrico o ancora passare per effetto compton. Nel primo caso, alla fine della catena di scattering, non ottengo un impulso all'energia del fotone gamma ma all'energia di quello scatterato. L'energia del fotone scatterato è sempre minore di $\frac{m_e c^2}{2}$ rispetto a quello incidente.
+  \item[pair production] Fotoni con energia maggiore di $2 m_e c^2$ possono dare origine, nel nucleo a coppie $e^+$ ed $e^-$. Il positrone annichilandosi con un elettrone produce due fotoni $\gamma$ a energia $511KeV$ che viaggiano però in senso opposto, quindi posso sperare di vederne uno. L'elettrone continua una catena di decadimenti dei quali posso misurare l'energia
+\end{description}
+
+\end{document}
