@@ -27,10 +27,10 @@ end
 
 %% calibrazione
 ch=1:2^12;
-calib.x=[1204 2909 3300]'; % se si vogliono aggiungere altri punti per la calibrazione
-calib.y=[511  1274 1505]'; % metterli in calib.x e calib.y. Si può anche cambiare il
-ft=fittype('a*x+b');    % tipo di fit in tal caso. calib.x contiene i canali
-f=fit(calib.x, calib.y, 'SmoothingSpline');% mentre calib.y le energie
+calib.x=[1204 2909]'; % se si vogliono aggiungere altri punti per la calibrazione
+calib.y=[511  1274]'; % metterli in calib.x e calib.y. Si può anche cambiare il
+ft=fittype('a*x');    % tipo di fit in tal caso.
+f=fit(calib.x, calib.y, ft);% 'poly1')
 E=f(ch);
 
 %% mappatura dell'energia sui canali
@@ -47,12 +47,9 @@ linep=@(k) line([annihilation annihilation],[1 maxsf(k)],'Color','red');
 typeofplot='semilogy';
 %typeofplot='norm';
 
-G.msize=10;
-
 %% Plotta solo una sorgente
 N=1;
 close all;
-%E=ch; % temp for calibration
 
 if (N<1||N>5)
     error('N tra 1 e 5 please!');
@@ -61,16 +58,16 @@ end
 % prima figura col fondo
 figure;
 if strcmp(typeofplot,'norm')
-    plot(E,getfield(sf,fn{N}),'.k','MarkerSize',G.msize);
+    plot(E,getfield(sf,fn{N}),'.k');
     hold on;
-    plot(E,sf.fondo,'.r','MarkerSize',G.msize);
+    plot(E,sf.fondo,'.r');
     if LINE 
         linep(i);
     end
 elseif strcmp(typeofplot,'semilogy')
-    semilogy(E,getfield(sf,fn{N}),'.k','MarkerSize',G.msize);
+    semilogy(E,getfield(sf,fn{N}),'.k');
     hold on;
-    semilogy(E,sf.fondo,'.r','MarkerSize',G.msize);
+    semilogy(E,sf.fondo,'.r');
     if LINE
         linep(i);
     end
@@ -85,13 +82,13 @@ hold off;
 % e seconda senza fondo
 figure;
 if strcmp(typeofplot,'norm')
-    plot(E,getfield(s,fn{N}),'.k','MarkerSize',G.msize);
+    plot(E,getfield(s,fn{N}),'.k');
     hold on;
     if LINE
         linep(i);
     end
 elseif strcmp(typeofplot,'semilogy')
-    semilogy(E,getfield(s,fn{N}),'.k','MarkerSize',G.msize);
+    semilogy(E,getfield(s,fn{N}),'.k');
     hold on;
     if LINE
         linep(i);
@@ -110,16 +107,16 @@ figure;
 for i=1:4
     subplot(2,2,i)
     if strcmp(typeofplot,'norm')
-        plot(E,getfield(sf,fn{i}),'.k','MarkerSize',G.msize);
+        plot(E,getfield(sf,fn{i}),'.k');
         hold on;
-        plot(E,sf.fondo,'.r','MarkerSize',G.msize);
+        plot(E,sf.fondo,'.r');
         if LINE
             linep(i);
         end
     elseif strcmp(typeofplot,'semilogy')
-        semilogy(E,getfield(sf,fn{i}),'.k','MarkerSize',G.msize);
+        semilogy(E,getfield(sf,fn{i}),'.k');
         hold on;
-        semilogy(E,sf.fondo,'.r','MarkerSize',G.msize);
+        semilogy(E,sf.fondo,'.r');
         if LINE
             linep(i);
         end
@@ -138,13 +135,13 @@ figure;
 for i=1:4
     subplot(2,2,i)
     if strcmp(typeofplot,'norm')
-        plot(E,getfield(s,fn{i}),'.k','MarkerSize',G.msize);
+        plot(E,getfield(s,fn{i}),'.k');
         hold on;
         if LINE
             linep(i);
         end
     elseif strcmp(typeofplot,'semilogy')
-        semilogy(E,getfield(s,fn{i}),'.k','MarkerSize',G.msize);
+        semilogy(E,getfield(s,fn{i}),'.k');
         hold on;
         if LINE
             linep(i);
@@ -162,14 +159,14 @@ end
 %tempo di dimezzamento
 V.thalf=5.27145;
 %attivit� al momento della fabbricazione
-V.N0=403300;
+E.N0=403300;
 %attivit� misurata
-V.N=61000;
+E.N=61000;
 %efficienza geometrica
-V.eg=(2.54*3)^2/(16*(25)^2);
+E.eg=(2.54*3)^2/(16*(25)^2);
 %attivit� stimata il 28/04/17
-V.Nt=V.N/(0.18*0.0058*1000);
+E.Nt=E.N/(0.18*0.0058*1000);
 %TEMPO Trascoros
-V.T=-V.thalf*log(V.Nt/V.N0)/log(2);
-V.mesi=0.7*365;
+E.T=-E.thalf*log(E.Nt/E.N0)/log(2);
+E.mesi=0.7*365;
 
